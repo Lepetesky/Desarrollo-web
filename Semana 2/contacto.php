@@ -63,9 +63,9 @@ $tituloPagina = 'Contacto';
 
     <section class="pv-hero" style="padding:3rem 0 2.5rem;">
         <div class="container">
-            <div class="pv-hero-eyebrow">Hablemos</div>
-            <h1 style="font-size:clamp(2rem,4vw,3rem);">¿Buscas un <span>título</span> o quieres vender el tuyo?</h1>
-            <p class="lead">Escríbenos y te respondemos dentro del día hábil siguiente.</p>
+            <div class="pv-hero-eyebrow">Contactanos!</div>
+            <h1 style="font-size:clamp(2rem,4vw,3rem);">¿Necesitas ayuda?</h1>
+            <p class="lead">Escríbenos y te responderemos lo antes posible.</p>
         </div>
     </section>
 
@@ -83,7 +83,7 @@ $tituloPagina = 'Contacto';
                                 <label for="asunto" class="form-label">Motivo:</label>
                                 <select class="form-control" id="asunto" name="asunto">
                                     <option>Consulta por un juego o consola</option>
-                                    <option>Quiero vender mi colección</option>
+                                    <option>Quiero vender un artículo</option>
                                     <option>Reparación técnica</option>
                                     <option>Estado de un pedido</option>
                                     <option>Otro</option>
