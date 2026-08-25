@@ -3,20 +3,23 @@ $tituloPagina = 'Productos';
 
 // Catalogo de ejemplo. Reemplaza esto por una consulta a tu base de datos
 // cuando conectes el sitio a un backend real.
+// 'valor'  = precio en número puro (lo usa el JS para calcular el total)
+// 'precio' = el mismo precio pero formateado para mostrarlo en pantalla
+// 'stock'  = unidades disponibles (define cuánto se puede agregar como máximo)
 $juegos = [
-    ['titulo' => 'Forza Horizon 6',          'plataforma' => 'PS5',     'estado' => 'Nuevo',  'precio' => '$40.990', 'color1' => '#e03326', 'color2' => '#1f9d9d', 'imagen' => 'img/juegos/forza.jpg'],
-    ['titulo' => 'Cyberpunk 2077',       'plataforma' => 'Xbox',    'estado' => 'Nuevo',  'precio' => '$39.990', 'color1' => '#e2df0d', 'color2' => '#4ae4e9', 'imagen' => 'img/juegos/cyberpunk.jpg'],
-    ['titulo' => 'Minecraft',      'plataforma' => 'Xbox',     'estado' => 'Nuevo',  'precio' => '$14.990', 'color1' => '#20c028', 'color2' => '#1fc7c7', 'imagen' => 'img/juegos/minecraft.jpg'],
-    ['titulo' => 'Kingdom Hearts',     'plataforma' => 'Switch',  'estado' => 'Nuevo',  'precio' => '$29.990', 'color1' => '#4d7af7', 'color2' => '#0f0f0f', 'imagen' => 'img/juegos/kingdom hearts.jpg'],
-    ['titulo' => 'Phantom Blade',         'plataforma' => 'PS5',     'estado' => 'Nuevo',  'precio' => '$44.990', 'color1' => '#070707', 'color2' => '#676d6d', 'imagen' => 'img/juegos/phantom blade.jpg'],
-    ['titulo' => 'Saros',                   'plataforma' => 'PS5',     'estado' => 'Nuevo',  'precio' => '$49.990', 'color1' => '#dac553', 'color2' => '#eecd39', 'imagen' => 'img/juegos/saros.jpg'],
+    ['titulo' => 'Forza Horizon 6',     'plataforma' => 'PS5',    'estado' => 'Nuevo', 'precio' => '$40.990', 'valor' => 40990, 'stock' => 8,  'color1' => '#e03326', 'color2' => '#1f9d9d', 'imagen' => 'img/juegos/forza.jpg'],
+    ['titulo' => 'Cyberpunk 2077',      'plataforma' => 'Xbox',   'estado' => 'Nuevo', 'precio' => '$39.990', 'valor' => 39990, 'stock' => 10, 'color1' => '#e2df0d', 'color2' => '#4ae4e9', 'imagen' => 'img/juegos/cyberpunk.jpg'],
+    ['titulo' => 'Minecraft',           'plataforma' => 'Xbox',   'estado' => 'Nuevo', 'precio' => '$14.990', 'valor' => 14990, 'stock' => 15, 'color1' => '#20c028', 'color2' => '#1fc7c7', 'imagen' => 'img/juegos/minecraft.jpg'],
+    ['titulo' => 'Kingdom Hearts',      'plataforma' => 'Switch', 'estado' => 'Nuevo', 'precio' => '$29.990', 'valor' => 29990, 'stock' => 6,  'color1' => '#4d7af7', 'color2' => '#0f0f0f', 'imagen' => 'img/juegos/kingdom hearts.jpg'],
+    ['titulo' => 'Phantom Blade',       'plataforma' => 'PS5',    'estado' => 'Nuevo', 'precio' => '$44.990', 'valor' => 44990, 'stock' => 5,  'color1' => '#070707', 'color2' => '#676d6d', 'imagen' => 'img/juegos/phantom blade.jpg'],
+    ['titulo' => 'Saros',               'plataforma' => 'PS5',    'estado' => 'Nuevo', 'precio' => '$49.990', 'valor' => 49990, 'stock' => 4,  'color1' => '#dac553', 'color2' => '#eecd39', 'imagen' => 'img/juegos/saros.jpg'],
 ];
 
 $consolas = [
-    ['titulo' => 'Consola Playstation 5 Spiderman 2',        'plataforma' => 'Nueva generación', 'estado' => 'Nuevo', 'precio' => '$450.990', 'color1' => '#e01f1f', 'color2' => '#030303', 'imagen' => 'img/consolas/spiderman2.jpg'],
-    ['titulo' => 'Consola Nintendo Switch Edicion Animal Crossing', 'plataforma' => 'Híbrida',          'estado' => 'Nuevo', 'precio' => '$329.990', 'color1' => '#10d3da', 'color2' => '#0a995e', 'imagen' => 'img/consolas/switch.jpg'],
-    ['titulo' => 'Consola Xbox One Edicion Minecraft',      'plataforma' => 'Generación anterior', 'estado' => 'Usado', 'precio' => '$189.990', 'color1' => '#61f81b', 'color2' => '#000000', 'imagen' => 'img/consolas/mine.jpg'],
-    ['titulo' => 'Consola Nintendo 3DS Edicion Pikachu',    'plataforma' => 'Clásica ', 'estado' => 'Usado', 'precio' => '150.000', 'color1' => '#e3f11a', 'color2' => '#e4e722', 'imagen' => 'img/consolas/pika.jpg'],
+    ['titulo' => 'Consola Playstation 5 Spiderman 2',              'plataforma' => 'Nueva generación',    'estado' => 'Nuevo', 'precio' => '$450.990', 'valor' => 450990, 'stock' => 3, 'color1' => '#e01f1f', 'color2' => '#030303', 'imagen' => 'img/consolas/spiderman2.jpg'],
+    ['titulo' => 'Consola Nintendo Switch Edicion Animal Crossing', 'plataforma' => 'Híbrida',             'estado' => 'Nuevo', 'precio' => '$329.990', 'valor' => 329990, 'stock' => 3, 'color1' => '#10d3da', 'color2' => '#0a995e', 'imagen' => 'img/consolas/switch.jpg'],
+    ['titulo' => 'Consola Xbox One Edicion Minecraft',              'plataforma' => 'Generación anterior', 'estado' => 'Usado', 'precio' => '$189.990', 'valor' => 189990, 'stock' => 2, 'color1' => '#61f81b', 'color2' => '#000000', 'imagen' => 'img/consolas/mine.jpg'],
+    ['titulo' => 'Consola Nintendo 3DS Edicion Pikachu',            'plataforma' => 'Clásica ',            'estado' => 'Usado', 'precio' => '$150.000', 'valor' => 150000, 'stock' => 1, 'color1' => '#e3f11a', 'color2' => '#e4e722', 'imagen' => 'img/consolas/pika.jpg'],
 ];
 
 function pvIniciales($titulo) {
@@ -32,8 +35,10 @@ function pvRenderTarjetas($items) {
         // ¿Este producto tiene una imagen guardada y el archivo existe en el servidor?
         $tieneImagen = isset($item['imagen']) && file_exists($item['imagen']);
 
+        // data-valor y data-stock: así le "pasamos" estos datos del PHP al JavaScript,
+        // que los va a leer directo del HTML con tarjeta.dataset.valor / tarjeta.dataset.stock
         echo '<div class="col-12 col-sm-6 col-md-4 col-lg-3">';
-        echo '  <div class="pv-card">';
+        echo '  <div class="pv-card" data-valor="' . (int)$item['valor'] . '" data-stock="' . (int)$item['stock'] . '">';
         echo '    <div class="pv-price-tag">' . htmlspecialchars($item['precio']) . '</div>';
 
         if ($tieneImagen) {
@@ -51,7 +56,14 @@ function pvRenderTarjetas($items) {
         echo '        <span class="pv-badge">' . htmlspecialchars($item['plataforma']) . '</span>';
         echo '        <span class="pv-badge">' . htmlspecialchars($item['estado']) . '</span>';
         echo '      </div>';
-        echo '      <a href="#" class="btn btn-pv btn-sm w-100">Ver ficha</a>';
+        echo '      <p class="pv-stock-texto mb-2" style="font-size:.8rem; color:var(--text-dim);">Quedan <span class="pv-stock-numero">' . (int)$item['stock'] . '</span> unidades</p>';
+
+        // Cantidad + Agregar al carrito, uno al lado del otro
+        echo '      <div class="d-flex gap-2">';
+        echo '        <input type="number" class="form-control pv-cantidad-input" value="1" min="1" max="' . (int)$item['stock'] . '" style="width:64px;">';
+        echo '        <button type="button" class="btn btn-pv btn-sm flex-grow-1" onclick="agregarDesdeTarjeta(this);">Agregar al carrito</button>';
+        echo '      </div>';
+
         echo '    </div>';
         echo '  </div>';
         echo '</div>';
@@ -82,6 +94,9 @@ function pvRenderTarjetas($items) {
             vertical-align: middle;
         }
     </style>
+
+    <!-- Lógica del carrito (cantidad, stock y total) vive en un archivo aparte -->
+    <script src="js/productos.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm pv-navbar">
@@ -147,6 +162,15 @@ function pvRenderTarjetas($items) {
                         <?php pvRenderTarjetas($consolas); ?>
                     </div>
                 </div>
+            </div>
+
+            <!-- Resumen simple de lo que se ha ido agregando (solo en el navegador, no se guarda) -->
+            <div class="mt-5 pv-form-card" style="max-width:420px;">
+                <h3 style="font-size:1.1rem; margin-bottom:.75rem;">Carrito</h3>
+                <ul id="listaCarrito" style="color:var(--text-dim); padding-left:1.2rem; margin-bottom:.75rem;"></ul>
+                <p style="border-top:1px solid var(--border); padding-top:.75rem; margin-bottom:0;">
+                    Total: <strong id="totalCarrito" style="color:var(--cyan);">$0</strong>
+                </p>
             </div>
         </div>
     </section>
