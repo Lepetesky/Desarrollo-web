@@ -1,0 +1,328 @@
+
+:root{
+  --bg:#f4f2f8;
+  --surface:#ffffff;
+  --surface-alt:#ece9f5;
+  --border:#ddd9ea;
+  --text:#211f30;
+  --text-dim:#68637f;
+  --magenta:#e8266b;
+  --cyan:#0891a6;
+  --amber:#b8791a;
+  --radius:10px;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Work Sans", system-ui, sans-serif;
+  min-height:100vh;
+}
+
+h1,h2,h3,h4,h5,.display-font{
+  font-family:"Rajdhani", system-ui, sans-serif;
+  font-weight:700;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+
+a{ color:var(--cyan); }
+a:hover{ color:var(--magenta); }
+
+/* ---------- Navbar ---------- */
+.pv-navbar{
+  background:var(--surface) !important;
+  border-bottom:1px solid var(--border);
+}
+.pv-navbar .navbar-brand{
+  font-family:"Rajdhani", sans-serif;
+  font-weight:700;
+  font-size:1.4rem;
+  letter-spacing:.06em;
+  color:var(--text) !important;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+}
+.pv-navbar .navbar-brand .fa{ color:var(--magenta); }
+.pv-navbar .nav-link{
+  color:var(--text-dim) !important;
+  font-family:"Rajdhani", sans-serif;
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  font-size:.95rem;
+}
+.pv-navbar .nav-link:hover,
+.pv-navbar .nav-link.active{ color:var(--cyan) !important; }
+.pv-navbar .dropdown-menu{
+  background:var(--surface-alt);
+  border:1px solid var(--border);
+}
+.pv-navbar .dropdown-item{ color:var(--text-dim); }
+.pv-navbar .dropdown-item:hover{ background:var(--bg); color:var(--cyan); }
+.btn-pv{
+  background:var(--magenta);
+  border:none;
+  color:#12121a;
+  font-family:"Rajdhani", sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  padding:.5rem 1.25rem;
+  border-radius:6px;
+}
+.btn-pv:hover{ background:var(--amber); color:#12121a; }
+.btn-pv-outline{
+  background:transparent;
+  border:1px solid var(--cyan);
+  color:var(--cyan);
+  font-family:"Rajdhani", sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  border-radius:6px;
+}
+.btn-pv-outline:hover{ background:var(--cyan); color:#12121a; }
+
+/* ---------- Hero (firma visual: estante de cartuchos) ---------- */
+.pv-hero{
+  position:relative;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,62,127,.12), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(47,230,230,.10), transparent 45%),
+    var(--bg);
+  padding:4.5rem 0 3.5rem;
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.pv-hero-eyebrow{
+  color:var(--amber);
+  font-family:"Rajdhani", sans-serif;
+  font-weight:700;
+  letter-spacing:.2em;
+  font-size:.8rem;
+  text-transform:uppercase;
+}
+.pv-hero h1{
+  font-size:clamp(2.4rem, 5vw, 4rem);
+  line-height:1.02;
+  margin:.4rem 0 1rem;
+}
+.pv-hero h1 span{ color:var(--magenta); }
+.pv-hero p.lead{
+  color:var(--text-dim);
+  font-family:"Work Sans", sans-serif;
+  max-width:38rem;
+}
+
+/* estantería CSS: lomos de cartuchos de distintos colores/alturas */
+.pv-shelf{
+  display:flex;
+  align-items:flex-end;
+  gap:6px;
+  height:190px;
+  padding-top:1rem;
+}
+.pv-cart{
+  flex:1 1 0;
+  border-radius:4px 4px 2px 2px;
+  position:relative;
+  box-shadow:inset 0 -6px 10px rgba(0,0,0,.35), 0 6px 14px rgba(0,0,0,.4);
+}
+.pv-cart::after{
+  content:"";
+  position:absolute; top:10%; left:0; right:0; height:3px;
+  background:rgba(255,255,255,.18);
+}
+.pv-shelf-base{
+  height:14px;
+  background:linear-gradient(var(--surface-alt), var(--surface));
+  border-radius:0 0 6px 6px;
+  margin-top:-2px;
+  box-shadow:0 8px 18px rgba(0,0,0,.5);
+}
+
+/* ---------- Secciones / tarjetas ---------- */
+.pv-section{ padding:3.5rem 0; }
+.pv-section-title{
+  font-size:1.9rem;
+  margin-bottom:.25rem;
+}
+.pv-section-sub{
+  color:var(--text-dim);
+  margin-bottom:2rem;
+}
+
+.pv-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  height:100%;
+  position:relative;
+  transition:transform .15s ease, border-color .15s ease;
+}
+.pv-card:hover{ transform:translateY(-4px); border-color:var(--cyan); }
+
+.pv-card-art{
+  height:150px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:"Rajdhani", sans-serif;
+  font-weight:700;
+  font-size:2.4rem;
+  color:rgba(255,255,255,.85);
+  letter-spacing:.05em;
+}
+
+/* Foto real del producto: mismo alto que pv-card-art, recortada (no estirada) para llenar el espacio */
+.pv-card-img{
+  height:150px;
+  width:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+.pv-card-body{ padding:1rem 1.1rem 1.2rem; }
+.pv-card-body h3{
+  font-size:1.05rem;
+  margin-bottom:.15rem;
+  text-transform:none;
+  letter-spacing:0;
+}
+.pv-card-meta{
+  color:var(--text-dim);
+  font-size:.82rem;
+  margin-bottom:.6rem;
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+}
+.pv-badge{
+  display:inline-block;
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:.05rem .4rem;
+  font-size:.72rem;
+  color:var(--text-dim);
+}
+
+/* Firma: etiqueta de precio tipo sticker de tienda de segunda mano */
+.pv-price-tag{
+  position:absolute;
+  top:10px;
+  right:-32px;
+  background:var(--amber);
+  color:#1a1300;
+  font-family:"Rajdhani", sans-serif;
+  font-weight:700;
+  font-size:.95rem;
+  padding:.25rem 2.4rem;
+  transform:rotate(35deg);
+  box-shadow:0 3px 6px rgba(0,0,0,.4);
+}
+
+.pv-tabs .nav-link{
+  color:var(--text-dim);
+  font-family:"Rajdhani", sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  border:1px solid var(--border);
+  border-radius:6px;
+  margin-right:.5rem;
+  background:var(--surface);
+}
+.pv-tabs .nav-link.active{
+  background:var(--magenta);
+  color:#12121a;
+  border-color:var(--magenta);
+}
+
+.pv-strip{
+  background:var(--surface-alt);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.pv-strip .pv-stat{ text-align:center; padding:1.6rem 1rem; }
+.pv-strip .pv-stat .num{
+  font-family:"Rajdhani", sans-serif;
+  font-weight:700;
+  font-size:2.1rem;
+  color:var(--cyan);
+}
+.pv-strip .pv-stat .lbl{
+  color:var(--text-dim);
+  font-size:.85rem;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+/* ---------- Formularios ---------- */
+.pv-form-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:2rem;
+}
+.pv-form-card label{
+  font-family:"Rajdhani", sans-serif;
+  font-weight:600;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  font-size:.85rem;
+  color:var(--text-dim);
+}
+.pv-form-card .form-control{
+  background:var(--bg);
+  border:1px solid var(--border);
+  color:var(--text);
+}
+.pv-form-card .form-control:focus{
+  background:var(--bg);
+  color:var(--text);
+  border-color:var(--cyan);
+  box-shadow:0 0 0 .2rem rgba(47,230,230,.18);
+}
+.pv-form-card .form-control::placeholder{ color:#5c5876; }
+
+/* ---------- Footer ---------- */
+.pv-footer{
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  padding:1.6rem 0;
+  color:var(--text-dim);
+  font-size:.85rem;
+}
+.pv-footer strong{ color:var(--text); }
+
+/* ---------- Modal de acceso ---------- */
+.pv-modal-content{
+  background:#ffffff;
+  background:var(--surface);
+  color:#211f30;
+  color:var(--text);
+  border:1px solid #ddd9ea;
+  border:1px solid var(--border);
+}
+.pv-modal-content .modal-header,
+.pv-modal-content .modal-footer{
+  border-color:#ddd9ea;
+  border-color:var(--border);
+}
+.pv-modal-content .form-check-label{
+  color:#68637f;
+  color:var(--text-dim);
+  text-transform:none;
+  font-family:"Work Sans", sans-serif;
+  font-weight:400;
+}
+
+@media (max-width:576px){
+  .pv-shelf{ height:120px; }
+  .pv-price-tag{ right:-36px; font-size:.8rem; }
+}
