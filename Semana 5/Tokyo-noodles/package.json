@@ -1,0 +1,21 @@
+{
+  "name": "tokyo-noodles-backend",
+  "version": "1.0.0",
+  "description": "Backend GraphQL para Tokyo Noodles (Caso 18) - Ramen y Gyozas",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "apollo-server-express": "3.13.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "graphql": "15.10.1",
+    "mongoose": "8.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
