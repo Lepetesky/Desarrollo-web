@@ -1,91 +1,72 @@
 import os
 import secrets
-from functools import lru_cache
 from typing import Annotated
 
-import hvac
 from fastapi import Depends, FastAPI, Header, HTTPException, status
 
 
 app = FastAPI(
-    title="Tokyo Noodles - Backend API",
-    description="API interna protegida para productos y pedidos de Tokyo Noodles",
+    title="Protected Backend API",
+    description="API remota que solo acepta solicitudes del API Gateway",
 )
 
 
-# Vault guarda el secreto compartido. En el codigo solo dejamos la ruta y los
-# nombres de configuracion, nunca el valor real del secreto.
-@lru_cache
-def get_gateway_secret() -> str:
-    vault_addr = os.getenv("VAULT_ADDR", "http://127.0.0.1:8200")
-    vault_token = os.getenv("VAULT_TOKEN")
-    mount_point = os.getenv("VAULT_MOUNT_POINT", "secret")
-    secret_path = os.getenv("VAULT_SECRET_PATH", "tokyo-noodles/security")
-
-    if not vault_token:
-        raise RuntimeError("Falta configurar VAULT_TOKEN en el entorno local")
-
-    client = hvac.Client(url=vault_addr, token=vault_token)
-    if not client.is_authenticated():
-        raise RuntimeError("Vault rechazo el token configurado")
-
-    response = client.secrets.kv.v2.read_secret_version(
-        path=secret_path,
-        mount_point=mount_point,
-        raise_on_deleted_version=True,
-    )
-    gateway_secret = response["data"]["data"].get("gateway_secret")
-
-    if not gateway_secret:
-        raise RuntimeError("Vault no contiene la clave gateway_secret")
-
-    return str(gateway_secret)
+# El backend recibe su credencial mediante el entorno del HOST B. No necesita
+# conocer el token del cliente ni conectarse directamente a Vault.
+def get_internal_gateway_secret() -> str:
+    configured_secret = os.getenv("INTERNAL_GATEWAY_SECRET")
+    if not configured_secret:
+        raise RuntimeError("INTERNAL_GATEWAY_SECRET no esta configurado")
+    return configured_secret
 
 
-# Todos los endpoints internos pasan por esta dependencia. compare_digest evita
-# comparar el secreto con una operacion comun que pueda filtrar informacion.
-def require_gateway_secret(
-    x_gateway_secret: Annotated[str | None, Header()] = None,
+# Esta dependencia protege los recursos de negocio. compare_digest permite
+# comparar credenciales sin usar una comparacion comun de texto.
+def verify_gateway(
+    x_gateway_secret: Annotated[str, Header()] = "",
 ) -> None:
-    expected_secret = get_gateway_secret()
-
-    if not x_gateway_secret or not secrets.compare_digest(
+    valid = secrets.compare_digest(
         x_gateway_secret,
-        expected_secret,
-    ):
+        get_internal_gateway_secret(),
+    )
+
+    if not valid:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acceso directo al backend no autorizado",
+            detail="Solicitud no autorizada desde Gateway",
         )
 
 
-backend_protection = [Depends(require_gateway_secret)]
+protected_by_gateway = [Depends(verify_gateway)]
 
 
-@app.get("/health", dependencies=backend_protection)
+# Health queda libre para comprobar si el servicio esta levantado.
+@app.get("/health")
 def health():
-    return {
-        "status": "OK",
-        "service": "Tokyo Noodles Backend API",
-    }
+    return {"status": "OK", "service": "Backend API"}
 
 
-@app.get("/products", dependencies=backend_protection)
-def products():
+@app.get("/products", dependencies=protected_by_gateway)
+def products(
+    x_authenticated_client: Annotated[str | None, Header()] = None,
+):
     return {
+        "authenticated_client": x_authenticated_client,
         "products": [
-            {"id": 1, "name": "Ramen Tokyo", "price": 8900},
-            {"id": 2, "name": "Gyozas de cerdo", "price": 4500},
-            {"id": 3, "name": "Te verde helado", "price": 2000},
-        ]
+            {"id": 1, "name": "Notebook", "price": 900000},
+            {"id": 2, "name": "Monitor", "price": 250000},
+        ],
     }
 
 
-@app.get("/orders", dependencies=backend_protection)
-def orders():
+@app.get("/orders", dependencies=protected_by_gateway)
+def orders(
+    x_authenticated_client: Annotated[str | None, Header()] = None,
+):
     return {
+        "authenticated_client": x_authenticated_client,
         "orders": [
             {"id": 1001, "status": "paid"},
             {"id": 1002, "status": "pending"},
-        ]
+        ],
     }
