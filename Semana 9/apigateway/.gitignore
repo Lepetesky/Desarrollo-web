@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.vault-token
+vault-data/
+.pytest_cache/
+.coverage
+
