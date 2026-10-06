@@ -10,5 +10,4 @@
   Vault y el backend; el README incluye verificación manual para Windows.
 - Una advertencia de deprecación de Starlette/TestClient no impidió las pruebas.
 
-Este resultado valida el Auth independiente y la regresión del laboratorio
-anterior. No representa una integración del Auth con el Gateway ni con el caso.
+
